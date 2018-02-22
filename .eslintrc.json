@@ -1,0 +1,82 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "semi": ["error", "always"],
+
+    "comma-style": ["error", "last"],
+
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline",
+        "exports": "only-multiline",
+        "functions": "only-multiline"
+      }
+    ],
+
+    "no-console": ["warn"],
+
+    "no-var": ["error"],
+
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": true
+      }
+    ],
+
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": {
+          "array": false,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": true,
+          "object": true
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+
+    "prefer-template": ["error"],
+
+    "rest-spread-spacing": ["error", "never"],
+
+    "no-mixed-spaces-and-tabs": "error",
+
+    "no-trailing-spaces": [
+      "error", {
+      "skipBlankLines": false,
+      "ignoreComments": false
+    }],
+
+    "space-before-blocks": "error",
+
+    "space-before-function-paren": ["error",
+      {
+      "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+    }],
+
+    "object-curly-spacing": [
+      "error", "always"
+    ],
+
+    "newline-before-return": "off"
+  }
+}
