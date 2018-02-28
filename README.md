@@ -53,7 +53,7 @@ Options
 
 The `page-coverage` utility allows you to pass additional parameters and customize the request.
 
-# Additional request headers
+##Additional request headers
 
 You can pass the custom HTTP request headers by using the `--header` (or `-H`) parameter:
 
@@ -62,7 +62,7 @@ page-coverage https://google.com --header "MyCustomHeader: Value"
 page-coverage https://google.com --header "MyCustomHeader: Value" --header "Foo: Bar"
 ```
 
-# Set request cookies
+## Set request cookies
 
 You can set the custom request cookie before fetching the URL by passing the `--cookie` (or `-b`) parameter:
 
@@ -71,14 +71,14 @@ page-coverage https://google.com --cookie "SESSIONID=1234567890ABCDEF"
 page-coverage https://google.com --cookie "SESSIONID=1234567890ABCDEF" --cookie "foo=bar; secure; domain=google.com; path=/"
 ```
 
-# Request timeout
+## Request timeout
 You can set the custom request timeout (in seconds) by passing the `--timeout` (or `-t`) parameter. Default value is 30 seconds
 
 ```bash
 page-coverage https://google.com --timeout 45
 ```
 
-# JSON output
+## JSON output
 Use the `--json` parameter to output the results in JSON format:
 
 ```bash
