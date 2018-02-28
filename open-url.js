@@ -4,8 +4,11 @@ const withCoverage = require('./with-coverage');
 const formatCoverage = require('./helpers/format-coverage');
 
 module.exports = async function openUrl(url, {
-  headless = true,
-  closeBrowser = true
+  headless,
+  closeBrowser,
+  timeout,
+  headers,
+  cookies
 }) {
   let browser;
 
@@ -13,7 +16,11 @@ module.exports = async function openUrl(url, {
     browser = await openBrowser({ headless });
 
     const pageWithCoverage = await withCoverage(browser);
-    const { jsCoverage, cssCoverage } = await pageWithCoverage(openPage, url, {
+    const { jsCoverage, cssCoverage } = await pageWithCoverage(openPage, {
+      url,
+      timeout,
+      cookies,
+      headers,
       closePage: closeBrowser
     });
     const coverage = [

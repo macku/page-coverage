@@ -7,8 +7,7 @@ module.exports = async function withCoverage(browser) {
   console.log('Collecting the JS and CSS coverage usage. Please wait...');
 
   return async function runWithCoverage(action, ...args) {
-    const { closePage, timeout } = args;
-    page.setDefaultNavigationTimeout(timeout);
+    const { closePage } = args;
     await action(page, ...args);
 
     const { jsCoverage, cssCoverage } = await stopCoverage(page);
