@@ -1,9 +1,17 @@
 #!/usr/bin/env node
 const meow = require('meow');
+const updateNotifier = require('update-notifier');
+
 const openUrl = require('./open-url');
+const pkg = require('./package.json');
 
 const parseCookieArg = require('./helpers/parse-cookie-arg');
 const parseHeaderArg = require('./helpers/parse-header-arg');
+
+const  notifier = updateNotifier({ pkg, updateCheckInterval: 0 });
+notifier.notify({
+  defer: true
+});
 
 const cli = meow({
   help: `
