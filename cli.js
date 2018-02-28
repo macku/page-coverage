@@ -13,17 +13,21 @@ const cli = meow({
     Options
       --noHeadless, -nh   Open browser (no headless mode)
       --noClose,    -nc   Don't close browser window when finished (only with no headless mode)
-      --timeout,    -t    Navigation timeout (in ms). Default 3000ms
+      --timeout,    -t    Navigation timeout (in seconds). Default 30s
       --cookie      -b    Set additional cookies for the page request (you can pass multiple params)
       --header      -H    Set additional headers for the page request (you can pass multiple params)
   
     Examples
       $ page-coverage https://google.com 
+      
       $ page-coverage https://google.com --no-headless
       $ page-coverage https://google.com --no-headless --no-close
-      $ page-coverage https://google.com --timeout 3000
+      
+      $ page-coverage https://google.com --timeout 45
+      
       $ page-coverage https://google.com --cookie "foo=bar"
-      $ page-coverage https://google.com --cookie "foo=bar" "moo=goo; domain=https://google.com; path=/ secure; httpOnly; expires=123456"
+      $ page-coverage https://google.com --cookie "foo=bar" "moo=goo; domain=google.com; path=/ secure; httpOnly; expires=123456"
+      
       $ page-coverage https://google.com --header "MyHeader: Value"
       $ page-coverage https://google.com --header "MyHeader: Value" --header "MyCustomHeader: some value"
   `,
@@ -44,7 +48,7 @@ const cli = meow({
     timeout: {
       type: 'number',
       alias: 't',
-      default: (30 * 1000),
+      default: 30,
     },
 
     cookie: {

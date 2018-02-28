@@ -26,8 +26,8 @@ or by [**Yarn**](https://yarnpkg.com/):
 yarn global add page-coverage 
 ```
 
-How to use it?
-==============
+How to use it
+=============
 
 Open your favourite terminal and type command:
 
@@ -46,3 +46,34 @@ Then wait for the tool to finish collecting coverage.
 In the results table, you can find the information about all of the downloaded **JS** and **CSS** files from the page.
 What is most important you can read the usage of each file.
  The **green** bar means how much code from the file content was actually executed on the page.
+
+
+Options
+=======
+
+The `page-coverage` utility allows you to pass additional parameters and customize the request.
+
+# Additional request headers
+
+You can pass the custom HTTP request headers by using the `--header` (or `-H`) parameter:
+
+```bash
+page-coverage https://google.com --header "MyCustomHeader: Value"
+page-coverage https://google.com --header "MyCustomHeader: Value" --header "Foo: Bar"
+```
+
+# Set request cookies
+
+You can set the custom request cookie before fetching the URL by passing the `--cookie` (or `-b`) parameter:
+
+```bash
+page-coverage https://google.com --cookie "SESSIONID=1234567890ABCDEF"
+page-coverage https://google.com --cookie "SESSIONID=1234567890ABCDEF" --cookie "foo=bar; secure; domain=google.com; path=/"
+```
+
+# Request timeout
+You can set the custom request timeout (in seconds) by passing the `--timeout` (or `-t`) parameter. Default value is 30 seconds
+
+```bash
+page-coverage https://google.com --timeout 45
+```

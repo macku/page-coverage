@@ -1,5 +1,5 @@
 async function openPage(page, { url, timeout, cookies, headers }) {
-  page.setDefaultNavigationTimeout(timeout);
+  page.setDefaultNavigationTimeout(timeout * 1000);
 
   if (headers) {
     await page.setExtraHTTPHeaders(headers);
