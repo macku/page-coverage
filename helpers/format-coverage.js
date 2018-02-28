@@ -12,12 +12,7 @@ const sumRangeUsage = ranges => {
   }, 0);
 };
 
-const formatCoverage = (coverage) => {
-  const table = new Table({
-    head: (['Asset URL', 'Type', 'Total Size', 'Used bytes', 'Usage'].map(label => chalk.blue.bold(label))),
-    colAligns: ['left', 'left', 'right', 'right', 'left']
-  });
-
+const formatCoverageResult = (coverage) => (
   coverage.map(({ url, text, ranges, type }) => {
     const usedBytesTotal = sumRangeUsage(ranges);
     const totalBytes = text.length;
@@ -26,6 +21,35 @@ const formatCoverage = (coverage) => {
     const unusedPercentage = totalBytes ? (unusedBytesTotal * 100 / totalBytes) : 0;
     const usedPercentage = 100 - unusedPercentage;
 
+    return {
+      url,
+      type,
+      totalBytes,
+      usedBytesTotal,
+      unusedBytesTotal,
+      usedPercentage,
+      unusedPercentage
+    };
+  })
+);
+
+const formatCoverage = (url, coverage, json) => {
+  const result = formatCoverageResult(coverage);
+
+  return json ? formatCoverageAsJson(url, result) : formatCoverageAsTable(result);
+};
+
+const formatCoverageAsJson = (url, coverage) => {
+  return JSON.stringify({ url, coverage });
+};
+
+const formatCoverageAsTable = (coverage) => {
+  const table = new Table({
+    head: (['Asset URL', 'Type', 'Total Size', 'Used bytes', 'Usage'].map(label => chalk.blue.bold(label))),
+    colAligns: ['left', 'left', 'right', 'right', 'left']
+  });
+
+  coverage.forEach(({ url, type, totalBytes, usedBytesTotal, usedPercentage }) => {
     const totalBytesFormatted = byteSize(totalBytes);
     const usedBytesFormatted = `${chalk.green(byteSize(usedBytesTotal))} (${usedPercentage.toFixed(2)}%)`;
 

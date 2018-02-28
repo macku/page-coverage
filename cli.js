@@ -11,11 +11,13 @@ const cli = meow({
       $ page-coverage <url>
   
     Options
-      --noHeadless, -nh   Open browser (no headless mode)
-      --noClose,    -nc   Don't close browser window when finished (only with no headless mode)
       --timeout,    -t    Navigation timeout (in seconds). Default 30s
       --cookie      -b    Set additional cookies for the page request (you can pass multiple params)
       --header      -H    Set additional headers for the page request (you can pass multiple params)
+      --json        -j    Output result in JSON format
+
+      --noHeadless, -nh   Open browser (no headless mode)
+      --noClose,    -nc   Don't close browser window when finished (only with no headless mode)
   
     Examples
       $ page-coverage https://google.com 
@@ -30,6 +32,8 @@ const cli = meow({
       
       $ page-coverage https://google.com --header "MyHeader: Value"
       $ page-coverage https://google.com --header "MyHeader: Value" --header "MyCustomHeader: some value"
+      
+      $ page-coverage https://google.com --json
   `,
 
   flags: {
@@ -64,7 +68,7 @@ const cli = meow({
     },
 
     json: {
-      type: 'string',
+      type: 'boolean',
       default: false,
       alias: 'j',
     }
@@ -76,7 +80,7 @@ if (cli.input.length < 1) {
 }
 
 const [ url ] = cli.input;
-const { noHeadless, noClose, timeout, header, cookie } = cli.flags;
+const { noHeadless, noClose, timeout, header, cookie, json } = cli.flags;
 
 const cookies = parseCookieArg(cookie, url);
 const headers = parseHeaderArg(header);
@@ -86,5 +90,6 @@ openUrl(url, {
   closeBrowser: !noClose,
   timeout,
   headers,
-  cookies
+  cookies,
+  json
 });
