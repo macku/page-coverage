@@ -53,7 +53,7 @@ Options
 
 The `page-coverage` utility allows you to pass additional parameters and customize the request.
 
-##Additional request headers
+## Additional request headers
 
 You can pass the custom HTTP request headers by using the `--header` (or `-H`) parameter:
 
