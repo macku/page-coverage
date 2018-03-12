@@ -9,11 +9,12 @@ module.exports = async function withCoverage(browser) {
     await action(page, ...args);
 
     const { jsCoverage, cssCoverage } = await stopCoverage(page);
+    const pageUrl = page.url().replace(/\/$/, '');
 
     if (closePage) {
       await page.close();
     }
 
-    return { jsCoverage, cssCoverage };
+    return { jsCoverage, cssCoverage, pageUrl };
   };
 };

@@ -1,3 +1,5 @@
+const validUrl = require('valid-url');
+
 const openBrowser = require('./helpers/open-browser');
 const openPage = require('./helpers/open-page');
 const withCoverage = require('./with-coverage');
@@ -12,6 +14,11 @@ module.exports = async function openUrl(url, {
   cookies,
   json
 }) {
+  if (!validUrl.isWebUri(url)) {
+    console.log(`The passed URL "${url}" doesn't look a like valid address`);
+    process.exit(1);
+  }
+
   let browser;
   const verboseOutput = !json;
   const consoleOutput = getConsole(verboseOutput);
@@ -22,7 +29,7 @@ module.exports = async function openUrl(url, {
     browser = await openBrowser({ headless });
 
     const pageWithCoverage = await withCoverage(browser);
-    const { jsCoverage, cssCoverage } = await pageWithCoverage(openPage, {
+    const { jsCoverage, cssCoverage, pageUrl } = await pageWithCoverage(openPage, {
       url,
       timeout,
       cookies,
@@ -43,8 +50,7 @@ module.exports = async function openUrl(url, {
     ];
 
     process.stdout.write('\033c');
-    consoleOutput(`Coverage report for page: ${url}`);
-    console.log(formatCoverage(url, coverage, json));
+    console.log(formatCoverage(url, pageUrl, coverage, json));
   } catch (e) {
     console.log(`[Error] ${e.message}`);
     process.exit(1);

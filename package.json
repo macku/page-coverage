@@ -9,7 +9,7 @@
     "css-coverage",
     "usage",
     "collect",
-    "ccs",
+    "css",
     "js",
     "browser",
     "chrome"
@@ -38,18 +38,19 @@
     "byte-size": "^4.0.2",
     "chalk": "^2.3.1",
     "cli-table": "^0.3.1",
-    "eslint-plugin-import": "^2.9.0",
     "meow": "^4.0.0",
     "puppeteer": "^1.1.0",
     "shorten-url": "^1.0.0",
-    "update-notifier": "^2.3.0"
+    "update-notifier": "^2.3.0",
+    "valid-url": "^1.0.9"
   },
   "engines": {
     "node": ">= 7.6",
     "npm": ">= 5.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.18.1",
-    "eslint-config-google": "^0.9.1"
+    "eslint": "^4.18.2",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.9.0"
   }
 }
