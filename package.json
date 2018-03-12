@@ -1,6 +1,6 @@
 {
   "name": "page-coverage",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Collect the information about JS and CSS overage and usage from any page",
   "keywords": [
     "puppeteer",
