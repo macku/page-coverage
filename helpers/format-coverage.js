@@ -95,7 +95,7 @@ const prettyFormat = (url, pageUrl, coverage) => {
   const prettyTable = formatCoverageAsTable(pageUrl, coverage);
 
   const { usedBytesTotal, usedPercentage, totalBytes } = getTotalUsage(coverage);
-  const prettyTotal = `Total ${chalk.green.bold(byteSize(usedBytesTotal))} ${chalk.dim(`(${usedPercentage.toFixed(2)}%)`)} of ${chalk.blue.bold(byteSize(totalBytes))} assets bytes are used one the page`;
+  const prettyTotal = `Using ${chalk.green.bold(byteSize(usedBytesTotal))} ${chalk.dim(`(${usedPercentage.toFixed(2)}%)`)} of all total ${chalk.blue.bold(byteSize(totalBytes))} assets from the page`;
 
   return `${prettyTable}\n\n${prettyTotal}\n`;
 };
