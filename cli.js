@@ -99,9 +99,6 @@ if (cli.input.length < 1) {
 const [ url ] = cli.input;
 const { noHeadless, noClose, timeout, header, cookie, post, json } = cli.flags;
 
-console.log(cli.flags);
-process.exit();
-
 const cookies = parseCookieArg(cookie, url);
 const headers = parseHeaderArg(header);
 
