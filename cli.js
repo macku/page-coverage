@@ -20,9 +20,10 @@ const cli = meow({
   
     Options
       --timeout,    -t    Navigation timeout (in seconds). Default 30s
-      --cookie      -b    Set additional cookies for the page request (you can pass multiple params)
-      --header      -H    Set additional headers for the page request (you can pass multiple params)
-      --json        -j    Output result in JSON format
+      --cookie,     -b    Set additional cookies for the page request (you can pass multiple params)
+      --header,     -H    Set additional headers for the page request (you can pass multiple params)
+      --post,       -P    Opens the page using POST request and sends the post data 
+      --json,       -j    Output result in JSON format
 
       --noHeadless, -nh   Open browser (no headless mode)
       --noClose,    -nc   Don't close browser window when finished (only with no headless mode)
@@ -40,6 +41,8 @@ const cli = meow({
       
       $ page-coverage https://google.com --header "MyHeader: Value"
       $ page-coverage https://google.com --header "MyHeader: Value" --header "MyCustomHeader: some value"
+      
+      $ page-coverage https://google.com --post "login=admin&password=secret" -H "Content-Type: application/x-www-form-urlencoded"
       
       $ page-coverage https://google.com --json
   `,
@@ -75,11 +78,17 @@ const cli = meow({
       default: null,
     },
 
+    post: {
+      type: 'string',
+      alias: 'P',
+      default: null,
+    },
+
     json: {
       type: 'boolean',
-      default: false,
       alias: 'j',
-    }
+      default: false,
+    },
   }
 });
 
@@ -88,7 +97,10 @@ if (cli.input.length < 1) {
 }
 
 const [ url ] = cli.input;
-const { noHeadless, noClose, timeout, header, cookie, json } = cli.flags;
+const { noHeadless, noClose, timeout, header, cookie, post, json } = cli.flags;
+
+console.log(cli.flags);
+process.exit();
 
 const cookies = parseCookieArg(cookie, url);
 const headers = parseHeaderArg(header);
@@ -99,5 +111,6 @@ openUrl(url, {
   timeout,
   headers,
   cookies,
-  json
+  post,
+  json,
 });

@@ -12,7 +12,8 @@ module.exports = async function openUrl(url, {
   timeout,
   headers,
   cookies,
-  json
+  post,
+  json,
 }) {
   let browser;
   const verboseOutput = !json;
@@ -30,13 +31,15 @@ module.exports = async function openUrl(url, {
 
     browser = await openBrowser({ headless });
 
-    const pageWithCoverage = await withCoverage(browser);
+    const page = await browser.newPage();
+    const pageWithCoverage = await withCoverage(page);
     const { jsCoverage, cssCoverage, pageUrl } = await pageWithCoverage(openPage, {
       url,
       timeout,
       cookies,
       headers,
-      closePage: closeBrowser
+      post,
+      closePage: closeBrowser,
     });
 
     const coverage = [

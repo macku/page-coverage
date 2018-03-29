@@ -1,7 +1,6 @@
 const { startCoverage, stopCoverage } = require('./helpers/collect-code-coverage');
 
-module.exports = async function withCoverage(browser) {
-  const page = await browser.newPage();
+module.exports = async function withCoverage(page) {
   await startCoverage(page);
 
   return async function runWithCoverage(action, ...args) {
