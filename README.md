@@ -78,6 +78,13 @@ You can set the custom request timeout (in seconds) by passing the `--timeout` (
 page-coverage https://google.com --timeout 45
 ```
 
+## Post request
+If you would like to send the `POST` request instead of the default `GET` you force it by using `--post` parameter and pass the post data:
+
+```bash
+page-coverage https://login.my-page.com/auth --post "login=admin&password=supersecret123" --header "Content-Type: application/x-www-form-urlencoded"
+```
+
 ## JSON output
 Use the `--json` parameter to output the results in JSON format:
 
