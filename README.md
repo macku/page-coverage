@@ -7,7 +7,7 @@ page-coverage
 [![node](https://img.shields.io/node/v/page-coverage.svg)](https://www.npmjs.com/package/page-coverage)
 [![dependencies Status](https://david-dm.org/macku/page-coverage/status.svg)](https://david-dm.org/macku/page-coverage)
 [![devDependencies Status](https://david-dm.org/macku/page-coverage/dev-status.svg)](https://david-dm.org/macku/page-coverage?type=dev)
-[![peerDependencies Status](https://david-dm.org/macku/page-coverage/peer-status.svg)](https://david-dm.org/macku/page-coverage?type=peer)
+[![peerDependencies Status](https://david-dm.org/macku/page-coverage/peer-status.svg)](https://david-dm.org/macku/page-coverage?type=peer) [![Greenkeeper badge](https://badges.greenkeeper.io/macku/page-coverage.svg)](https://greenkeeper.io/)
 
 Collect the information about JS and CSS **code overage** and usage from any page with a little help of [Puppeteer](https://github.com/GoogleChrome/puppeteer)
 
